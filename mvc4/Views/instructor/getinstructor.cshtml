@@ -1,0 +1,54 @@
+﻿@model List<mvc4.Models.Instructor>
+@{
+    ViewBag.Title = "gerinstructor";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+@*<a href="create">Create</a>*@
+@Html.ActionLink("Create","create",null,new {@class="btn btn-danger"})
+<table border="1">
+    <tr>
+        <td>Id</td>
+        <td>Name</td>
+        <td>Degree</td>
+        <td>Salary</td>
+        <td>Department</td>
+        <td>Delete</td>
+        <td>Update</td>
+        <td>Photo</td>
+        <td>Download</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>@item.Ins_Id</td>
+    <td>@item.Ins_Name</td>
+    <td>@item.Ins_Degree</td>
+    <td>@item.Salary</td>
+    @if (item.Department != null)
+    {
+        <td>@item.Department.Dept_Name</td>
+    }
+    else
+    {
+        <td></td>
+    }
+    @*<td><a href="delete/@item.Ins_Id" onclick="return confirm('Are you sure to delete @item.Ins_Name?')">delete</a></td>*@
+    <td>@Html.ActionLink("delete", $"delete/{item.Ins_Id}", null, new { @class = "btn btn-danger" })</td>
+    <td>@Html.ActionLink("update", $"update/{item.Ins_Id}", null, new { @class = "btn btn-info" })</td>
+    <td>
+        @if(item.photo != null)
+                {
+                    <img src="~/attach/@item.photo" width="50" height="50"/>
+                }
+                else
+                {
+                    <img src="~/attach/FB_IMG_1515922317434.jpg" width="50" height="50" />
+                }
+    </td>
+    <td>
+        @Html.ActionLink("download","download",new {name=item.photo},new {@class="btn btn-danger"})
+
+    </td>
+</tr>
+    }
+</table>

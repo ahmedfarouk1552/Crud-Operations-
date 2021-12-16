@@ -1,0 +1,43 @@
+﻿@model mvc4.Models.Instructor
+@{
+    ViewBag.Title = "create";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<form method="post" action="save" enctype="multipart/form-data">
+    <div class="form-group">
+        @Html.Label("Instructor Id")
+        @Html.TextBoxFor(n => n.Ins_Id, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Ins_Id)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instructor Name")
+        @Html.TextBoxFor(n => n.Ins_Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Ins_Name)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instructor Degree")
+        @Html.TextBoxFor(n => n.Ins_Degree, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Ins_Degree)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instructor Salary")
+        @Html.TextBoxFor(n => n.Salary, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Salary)
+    </div>
+
+    
+    <div class="form-group">
+        @Html.Label("Department Name")
+        @Html.DropDownListFor(n => n.Dept_Id, (SelectList)ViewBag.depts ,new { @class = "form-control" })
+    </div>
+
+    <div class="form-group">
+        <input type="file" name="img" class="form-control"/>
+    </div>
+
+    <input type="submit" value="Save" class="btn btn-dark" onclick="return confirm('Are you sure to added new instructor')"/>
+</form>

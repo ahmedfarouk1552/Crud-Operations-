@@ -1,0 +1,39 @@
+﻿@model mvc4.Models.Instructor
+@{
+    ViewBag.Title = "update";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+
+<form method="post" action="save">
+
+    <div>
+        @Html.HiddenFor(n=>n.Ins_Id)
+    </div>
+    
+    <div class="form-group">
+        @Html.Label("Instructor Name")
+        @Html.TextBoxFor(n => n.Ins_Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Ins_Name)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instructor Degree")
+        @Html.TextBoxFor(n => n.Ins_Degree, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Ins_Degree)
+    </div>
+
+    <div class="form-group">
+        @Html.Label("Instructor Salary")
+        @Html.TextBoxFor(n => n.Salary, new { @class = "form-control" })
+        @Html.ValidationMessageFor(n => n.Salary)
+    </div>
+
+
+    <div class="form-group">
+        @Html.Label("Department Name")
+        @Html.DropDownListFor(n => n.Dept_Id, (SelectList)ViewBag.depts, new { @class = "form-control" })
+    </div>
+
+    <input type="submit" value="Update" class="btn btn-light" onclick="return confirm('Are you sure to edite this instructor')" />
+</form>
+
